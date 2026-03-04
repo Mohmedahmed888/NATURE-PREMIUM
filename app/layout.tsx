@@ -55,7 +55,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl" className={playfair.variable} suppressHydrationWarning>
-      <body className="min-h-screen antialiased w-full max-w-[100vw] overflow-x-hidden">
+      <body className="min-h-screen antialiased w-full max-w-full overflow-x-clip">
         <a
           href="#main-content"
           className="skip-link"
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           انتقل للمحتوى الرئيسي
         </a>
         <Background />
-        <div className="min-w-0 w-full max-w-[100vw] overflow-x-hidden">
+        <div className="min-w-0 w-full max-w-full overflow-x-clip">
           <Providers>{children}</Providers>
         </div>
       </body>

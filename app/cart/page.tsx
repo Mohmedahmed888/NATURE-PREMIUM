@@ -36,7 +36,7 @@ export default function CartPage() {
   const totalCents = rows.reduce((sum, r) => sum + (r.p!.priceCents * r.qty), 0)
 
   return (
-    <div className="min-h-screen w-full min-w-0 max-w-[100vw] overflow-x-hidden grid grid-rows-[auto_1fr_auto]">
+    <div className="min-h-screen w-full min-w-0 max-w-full overflow-x-clip grid grid-rows-[auto_1fr_auto]">
       <Navbar />
       <main id="main-content" className="w-full mx-auto max-w-5xl px-4 pb-16">
         <div className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 mt-6 shadow-lg border border-stone-100">

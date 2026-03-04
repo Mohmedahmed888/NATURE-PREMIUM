@@ -137,7 +137,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen w-full min-w-0 max-w-[100vw] overflow-x-hidden grid grid-rows-[auto_1fr_auto]">
+    <div className="min-h-screen w-full min-w-0 max-w-full overflow-x-clip grid grid-rows-[auto_1fr_auto]">
       <Navbar />
       <main id="main-content" className="w-full mx-auto max-w-6xl px-4 sm:px-6 py-8 pb-16">
         <h1 className="text-2xl font-bold text-slate-800 mb-6">إتمام الطلب</h1>

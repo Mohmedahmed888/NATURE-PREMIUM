@@ -28,15 +28,15 @@ export default async function Page() {
   }
 
   return (
-    <div className="min-h-screen w-full min-w-0 max-w-[100vw] overflow-x-hidden grid grid-rows-[auto_1fr_auto]">
+    <div className="min-h-screen w-full min-w-0 max-w-full overflow-x-clip grid grid-rows-[auto_1fr_auto]">
       <JsonLd data={jsonLd} />
       <Navbar />
 
       <main id="main-content" className="w-full min-h-0 flex flex-col">
         {/* Hero Section */}
-        <section className="relative min-h-[85vh] w-full flex items-center justify-center">
+        <section className="relative min-h-[85vh] w-full flex items-center justify-center overflow-x-clip">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20" style={{ marginInline: 'auto' }}>
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 min-w-0">
           <div className="flex-1 min-w-0 order-2 lg:order-1 text-center lg:text-right">
             <span className="inline-block text-sm font-semibold text-orange-500 tracking-widest uppercase mb-3">
               منتجات طبيعية
@@ -65,9 +65,9 @@ export default async function Page() {
             </div>
 
             {/* Product image area */}
-            <div className="relative flex justify-center items-center">
+            <div className="relative flex justify-center items-center min-w-0 overflow-hidden">
               {heroProduct ? (
-                <div className="relative">
+                <div className="relative max-w-full">
                   <div className="w-48 h-64 md:w-56 md:h-72 lg:w-64 lg:h-80 mx-auto bg-white/60 rounded-3xl shadow-xl flex items-center justify-center overflow-hidden border border-stone-200/50 relative">
                     <OptimizedImage src={heroProduct.imageUrl} alt={heroProduct.name} fill className="object-contain p-4" sizes="256px" />
                   </div>
