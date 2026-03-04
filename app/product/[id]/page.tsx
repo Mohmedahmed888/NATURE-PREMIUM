@@ -12,16 +12,20 @@ import { JsonLd } from '@/components/JsonLd'
 type Props = { params: Promise<{ id: string }> }
 
 async function findProductBySlug(slug: string) {
-  const trimmed = slug.trim()
-  return prisma.product.findFirst({
-    where: {
-      OR: [
-        { slug: trimmed },
-        { slug: trimmed.replace(/\s+/g, '-') },
-        { slug: trimmed.replace(/-/g, ' ') },
-      ],
-    },
-  })
+  try {
+    const trimmed = slug.trim()
+    return await prisma.product.findFirst({
+      where: {
+        OR: [
+          { slug: trimmed },
+          { slug: trimmed.replace(/\s+/g, '-') },
+          { slug: trimmed.replace(/-/g, ' ') },
+        ],
+      },
+    })
+  } catch {
+    return null
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -6,11 +6,16 @@ import { prisma } from '@/lib/prisma'
 import { ProductCard } from '@/components/ProductCard'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Page() {
-  const products = await prisma.product.findMany({
-    where: { active: true },
-    orderBy: { createdAt: 'desc' },
-  })
+  let products: Awaited<ReturnType<typeof prisma.product.findMany>> = []
+  try {
+    products = await prisma.product.findMany({
+      where: { active: true },
+      orderBy: { createdAt: 'desc' },
+    })
+  } catch { /* DB not ready on Vercel build */ }
   const heroProduct = products[0]
 
   const base = process.env.APP_URL || 'http://localhost:3000'
