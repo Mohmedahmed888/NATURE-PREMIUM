@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import path from 'path'
+import { put } from '@vercel/blob'
 import { isAuthed } from '@/lib/auth'
 import sharp from 'sharp'
 
@@ -45,13 +46,24 @@ export async function POST(req: Request) {
       outputBuffer = buffer
     }
 
-    const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}.webp`
+    const filename = `products/${Date.now()}-${Math.random().toString(36).slice(2)}.webp`
+
+    // Vercel Blob على الإنتاج — يعمل على Vercel
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      const blob = await put(filename, outputBuffer, {
+        access: 'public',
+        contentType: 'image/webp',
+      })
+      return NextResponse.json({ ok: true, url: blob.url })
+    }
+
+    // الملفات المحلية للتطوير
     const uploadDir = path.join(process.cwd(), 'public', 'uploads')
     await mkdir(uploadDir, { recursive: true })
-    const filepath = path.join(uploadDir, filename)
+    const localFilename = filename.replace('products/', '')
+    const filepath = path.join(uploadDir, localFilename)
     await writeFile(filepath, outputBuffer)
-
-    return NextResponse.json({ ok: true, url: `/uploads/${filename}` })
+    return NextResponse.json({ ok: true, url: `/uploads/${localFilename}` })
   } catch (e) {
     console.error('Upload error:', e)
     return NextResponse.json({ ok: false, error: 'upload_failed' }, { status: 500 })
