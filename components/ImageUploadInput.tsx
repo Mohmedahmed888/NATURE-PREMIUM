@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import { useToast } from '@/components/Toast'
 
 export function ImageUploadInput({
   value,
@@ -13,6 +14,7 @@ export function ImageUploadInput({
   placeholder?: string
   className?: string
 }) {
+  const { toast } = useToast()
   const [uploading, setUploading] = useState(false)
   const [mode, setMode] = useState<'url' | 'upload'>('upload')
   const inputRef = useRef<HTMLInputElement>(null)
@@ -26,12 +28,20 @@ export function ImageUploadInput({
       fd.append('file', file)
       const res = await fetch('/api/upload', { method: 'POST', body: fd })
       const data = await res.json()
-      if (data.ok && data.url) onChange(data.url)
-      else if (data.error === 'file_too_large') alert('الملف كبير جداً (الحد 5 ميجا)')
-      else if (data.error === 'invalid_type') alert('نوع الملف غير مدعوم (jpeg, png, webp, gif)')
-      else alert('فشل رفع الصورة')
+      if (data.ok && data.url) {
+        onChange(data.url)
+        toast('تم رفع الصورة بنجاح')
+      } else if (data.error === 'file_too_large') {
+        toast('الملف كبير جداً (الحد 5 ميجا)', 'error')
+      } else if (data.error === 'invalid_type') {
+        toast('نوع الملف غير مدعوم (jpeg, png, webp, gif)', 'error')
+      } else {
+        toast('فشل رفع الصورة. استخدم وضع «رابط» وأدخل رابط الصورة من الإنترنت', 'error')
+        setMode('url')
+      }
     } catch {
-      alert('فشل رفع الصورة')
+      toast('فشل رفع الصورة. استخدم وضع «رابط» وأدخل رابط الصورة من الإنترنت', 'error')
+      setMode('url')
     } finally {
       setUploading(false)
       e.target.value = ''
