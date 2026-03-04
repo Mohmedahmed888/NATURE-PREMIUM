@@ -193,15 +193,14 @@ export default async function Page() {
 
             {products.length === 0 && (
               <div className="text-center py-16">
-                <p className="text-slate-500 mb-6">لا توجد منتجات حالياً</p>
-                <form action="/api/seed" method="post">
-                  <button
-                    type="submit"
-                    className="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-medium"
-                  >
-                    إضافة منتجات للبداية
-                  </button>
-                </form>
+                <p className="text-slate-600 mb-2">لا توجد منتجات متاحة حالياً</p>
+                <p className="text-slate-500 text-sm">تواصل معنا على info@naturalpremium.com أو عد لزيارتنا قريباً</p>
+                <Link
+                  href="/#contact"
+                  className="inline-flex items-center justify-center mt-6 px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-medium transition-colors"
+                >
+                  تواصل معنا
+                </Link>
               </div>
             )}
           </div>
