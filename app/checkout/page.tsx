@@ -125,8 +125,10 @@ export default function CheckoutPage() {
         }
         throw new Error(data.error === 'too_many_requests' ? 'محاولات كثيرة. انتظر دقيقة.' : 'فشل إنشاء الطلب')
       }
+      const order = data.order
+      if (!order?.id) throw new Error('فشل إنشاء الطلب')
       clear()
-      setDone({ orderId: data.order.id, orderNumber: shortOrderNumber(data.order.id) })
+      setDone({ orderId: order.id, orderNumber: shortOrderNumber(order.id) })
     } catch (e: any) {
       setErr(e?.message || 'حصل خطأ')
     } finally {

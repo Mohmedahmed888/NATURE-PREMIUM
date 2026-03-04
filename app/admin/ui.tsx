@@ -21,6 +21,8 @@ type Product = {
   ordersCount: number
 }
 
+type EditFormState = Omit<Partial<Product>, 'imageUrls'> & { imageUrls?: string[] }
+
 type Order = {
   id: string
   email: string
@@ -44,7 +46,7 @@ export default function AdminClient() {
   const [busy, setBusy] = useState(false)
   const [msg, setMsg] = useState<string | null>(null)
   const [editingId, setEditingId] = useState<string | null>(null)
-  const [editForm, setEditForm] = useState<Partial<Product> & { imageUrls?: string[] }>({})
+  const [editForm, setEditForm] = useState<EditFormState>({})
   const [newImageUrl, setNewImageUrl] = useState('')
   const [newImageUrls, setNewImageUrls] = useState<string[]>([])
 
