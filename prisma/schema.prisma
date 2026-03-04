@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Product {
+  id          String      @id @default(cuid())
+  slug        String      @unique
+  name        String
+  description String
+  priceCents  Int
+  imageUrl    String      // الصورة الرئيسية
+  imageUrls   String?     // صور إضافية كـ JSON: ["url1","url2"]
+  active      Boolean     @default(true)
+  stock       Int         @default(999) // عدد الموجود في المخزن
+  views       Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  orderItems  OrderItem[]
+
+  @@index([active])
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+
+  orders Order[]
+
+  @@index([email])
+}
+
+model Order {
+  id            String   @id @default(cuid())
+  email         String
+  name          String
+  phone         String?
+  address       String
+  city          String
+  country       String
+  status        String   @default("PENDING")
+  totalCents    Int
+  paymentMethod String   @default("CASH")
+  discountCents Int      @default(0)
+  couponCode    String?
+  createdAt     DateTime @default(now())
+
+  userId  String?
+  user    User?    @relation(fields: [userId], references: [id])
+  items   OrderItem[]
+
+  @@index([email])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+model Coupon {
+  id           String   @id @default(cuid())
+  code         String   @unique
+  type         String   // PERCENT | FIXED
+  value        Int      // نسبة مئوية أو مبلغ ثابت بالسنت
+  minOrderCents Int     @default(0)
+  maxUses      Int?     // null = unlimited
+  usedCount    Int      @default(0)
+  expiresAt    DateTime?
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+
+  @@index([code])
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  productId String
+  qty       Int
+  priceCents Int
+
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+}
