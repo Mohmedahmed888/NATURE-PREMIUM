@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen w-full grid grid-rows-[auto_1fr_auto]">
+    <div className="min-h-screen w-full min-w-0 max-w-[100vw] overflow-x-hidden grid grid-rows-[auto_1fr_auto]">
       <Navbar />
       <main id="main-content" className="w-full max-w-3xl mx-auto px-4 py-16">
         <h1 className="text-3xl font-bold text-slate-800">سياسة الخصوصية</h1>

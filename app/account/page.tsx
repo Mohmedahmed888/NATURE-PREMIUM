@@ -16,7 +16,7 @@ export default async function AccountPage(props: { searchParams: Promise<{ err?:
 
   if (!user) {
     return (
-      <div className="min-h-screen w-full grid grid-rows-[auto_1fr_auto]">
+      <div className="min-h-screen w-full min-w-0 max-w-[100vw] overflow-x-hidden grid grid-rows-[auto_1fr_auto]">
         <Navbar />
         <main id="main-content" className="w-full max-w-md mx-auto px-4 py-16">
           <h1 className="text-2xl font-bold text-slate-800 mb-6">حسابي</h1>
@@ -55,7 +55,7 @@ export default async function AccountPage(props: { searchParams: Promise<{ err?:
   })
 
   return (
-    <div className="min-h-screen w-full grid grid-rows-[auto_1fr_auto]">
+    <div className="min-h-screen w-full min-w-0 max-w-[100vw] overflow-x-hidden grid grid-rows-[auto_1fr_auto]">
       <Navbar />
       <main id="main-content" className="w-full max-w-4xl mx-auto px-4 py-16">
         <div className="flex justify-between items-center mb-8">

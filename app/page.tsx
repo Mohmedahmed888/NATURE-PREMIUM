@@ -28,7 +28,7 @@ export default async function Page() {
   }
 
   return (
-    <div className="min-h-screen w-full grid grid-rows-[auto_1fr_auto]">
+    <div className="min-h-screen w-full min-w-0 max-w-[100vw] overflow-x-hidden grid grid-rows-[auto_1fr_auto]">
       <JsonLd data={jsonLd} />
       <Navbar />
 
