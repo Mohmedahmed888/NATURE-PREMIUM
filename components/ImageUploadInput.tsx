@@ -35,8 +35,11 @@ export function ImageUploadInput({
         toast('الملف كبير جداً (الحد 5 ميجا)', 'error')
       } else if (data.error === 'invalid_type') {
         toast('نوع الملف غير مدعوم (jpeg, png, webp, gif)', 'error')
+      } else if (data.error === 'blob_not_configured') {
+        toast('إعداد التخزين: من لوحة Vercel → Storage → أنشئ Blob واربطه بالمشروع', 'error')
+        setMode('url')
       } else {
-        toast('فشل رفع الصورة. استخدم وضع «رابط» وأدخل رابط الصورة من الإنترنت', 'error')
+        toast('فشل رفع الصورة. استخدم وضع «رابط» كحل مؤقت', 'error')
         setMode('url')
       }
     } catch {

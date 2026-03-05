@@ -48,7 +48,12 @@ export async function POST(req: Request) {
 
     const filename = `products/${Date.now()}-${Math.random().toString(36).slice(2)}.webp`
 
-    // Vercel Blob على الإنتاج — يعمل على Vercel
+    // على Vercel يجب تفعيل Blob — راجع تعليمات الإعداد أدناه
+    if (process.env.VERCEL && !process.env.BLOB_READ_WRITE_TOKEN) {
+      return NextResponse.json({ ok: false, error: 'blob_not_configured' }, { status: 503 })
+    }
+
+    // Vercel Blob على الإنتاج
     if (process.env.BLOB_READ_WRITE_TOKEN) {
       const blob = await put(filename, outputBuffer, {
         access: 'public',

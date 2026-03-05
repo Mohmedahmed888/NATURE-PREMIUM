@@ -50,13 +50,24 @@ export default function AdminClient() {
   const [newImageUrl, setNewImageUrl] = useState('')
   const [newImageUrls, setNewImageUrls] = useState<string[]>([])
 
+  async function safeJson(res: Response): Promise<{ ok?: boolean; error?: unknown }> {
+    const text = await res.text()
+    try {
+      return text ? JSON.parse(text) : {}
+    } catch {
+      throw new Error(res.status === 500 ? 'خطأ في الخادم. تحقق من قاعدة البيانات.' : 'استجابة غير صالحة')
+    }
+  }
+
   async function refresh() {
-    const [p, o] = await Promise.all([
-      fetch('/api/admin/products').then((r) => r.json()),
-      fetch('/api/orders').then((r) => r.json()),
+    const [resP, resO] = await Promise.all([
+      fetch('/api/admin/products'),
+      fetch('/api/orders'),
     ])
-    setProducts(p.products || [])
-    setOrders(o.orders || [])
+    const p = await safeJson(resP) as { products?: Product[] }
+    const o = await safeJson(resO) as { orders?: Order[] }
+    setProducts(p.products ?? [])
+    setOrders(o.orders ?? [])
   }
 
   useEffect(() => {
@@ -84,10 +95,10 @@ export default function AdminClient() {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(payload),
       })
-      const data = await res.json()
+      const data = await safeJson(res)
       if (!data.ok) {
-        const err = data.error
-        const errMsg = typeof err === 'string' ? err : err?.fieldErrors ? Object.values(err.fieldErrors).flat().filter(Boolean).join('; ') : 'فشل إضافة المنتج'
+        const err = data.error as { fieldErrors?: Record<string, string[]> } | string | undefined
+        const errMsg = typeof err === 'string' ? err : err && typeof err === 'object' && err.fieldErrors ? Object.values(err.fieldErrors).flat().filter(Boolean).join('; ') : 'فشل إضافة المنتج'
         throw new Error(errMsg || 'فشل إضافة المنتج')
       }
       setMsg('تم إضافة المنتج ✅')
@@ -122,10 +133,10 @@ export default function AdminClient() {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(payload),
       })
-      const data = await res.json()
+      const data = await safeJson(res)
       if (!data.ok) {
-        const err = data.error
-        const errMsg = typeof err === 'string' ? err : err?.fieldErrors ? Object.values(err.fieldErrors).flat().filter(Boolean).join('; ') : 'فشل التعديل'
+        const err = data.error as { fieldErrors?: Record<string, string[]> } | string | undefined
+        const errMsg = typeof err === 'string' ? err : err && typeof err === 'object' && err.fieldErrors ? Object.values(err.fieldErrors).flat().filter(Boolean).join('; ') : 'فشل التعديل'
         throw new Error(errMsg || 'فشل التعديل')
       }
       setMsg('تم التعديل ✅')
@@ -144,7 +155,7 @@ export default function AdminClient() {
     setBusy(true)
     try {
       const res = await fetch(`/api/products/${id}`, { method: 'DELETE' })
-      const data = await res.json()
+      const data = await safeJson(res)
       if (!data.ok) throw new Error('فشل الحذف')
       setMsg('تم الحذف ✅')
       await refresh()

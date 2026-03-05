@@ -40,19 +40,27 @@ const ProductInput = z.object({
 })
 
 export async function POST(req: Request) {
-  if (!(await isAuthed())) return NextResponse.json({ ok: false, error: 'unauthorized' }, { status: 401 })
-  const body = await req.json().catch(() => null)
-  const parsed = ProductInput.safeParse(body)
-  if (!parsed.success) return NextResponse.json({ ok: false, error: parsed.error.flatten() }, { status: 400 })
+  try {
+    if (!(await isAuthed())) return NextResponse.json({ ok: false, error: 'unauthorized' }, { status: 401 })
+    const body = await req.json().catch(() => null)
+    const parsed = ProductInput.safeParse(body)
+    if (!parsed.success) return NextResponse.json({ ok: false, error: parsed.error.flatten() }, { status: 400 })
 
-  const { imageUrls, ...rest } = parsed.data
-  const p = await prisma.product.create({
-    data: {
-      ...rest,
-      imageUrls: imageUrls?.length ? JSON.stringify(imageUrls) : null,
-      active: parsed.data.active ?? true,
-      stock: parsed.data.stock ?? 999,
-    },
-  })
-  return NextResponse.json({ ok: true, product: p })
+    const { imageUrls, ...rest } = parsed.data
+    const p = await prisma.product.create({
+      data: {
+        ...rest,
+        imageUrls: imageUrls?.length ? JSON.stringify(imageUrls) : null,
+        active: parsed.data.active ?? true,
+        stock: parsed.data.stock ?? 999,
+      },
+    })
+    return NextResponse.json({ ok: true, product: p })
+  } catch (e) {
+    console.error('POST /api/products error:', e)
+    return NextResponse.json(
+      { ok: false, error: e instanceof Error ? e.message : 'خطأ في الخادم' },
+      { status: 500 }
+    )
+  }
 }
