@@ -41,15 +41,17 @@ export default function AdminCouponsClient() {
     try {
       const type = formData.get('type') as string
       const value = type === 'PERCENT' ? Number(formData.get('value')) : Math.round(Number(formData.get('value')) * 100)
+      const expiresRaw = formData.get('expiresAt') as string | null
+      const expiresAt = expiresRaw?.trim() && !isNaN(Date.parse(expiresRaw)) ? expiresRaw : null
+
       const payload = {
         code: String(formData.get('code')).toUpperCase().trim(),
         type,
         value,
         minOrderCents: Math.round(Number(formData.get('minOrder') || 0) * 100),
         maxUses: formData.get('maxUses') ? Number(formData.get('maxUses')) : null,
-        expiresAt: formData.get('expiresAt') || null,
+        expiresAt,
       }
-      if (payload.expiresAt === '') payload.expiresAt = null
       const res = await fetch('/api/coupons', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
@@ -124,7 +126,12 @@ export default function AdminCouponsClient() {
           <Input name="value" type="number" placeholder="Value (10 or 50)" required />
           <Input name="minOrder" type="number" step="0.01" placeholder="Min order (EGP)" defaultValue="0" />
           <Input name="maxUses" type="number" placeholder="Max uses (empty=unlimited)" />
-          <Input name="expiresAt" type="datetime-local" placeholder="Expiry date" />
+          <input
+            name="expiresAt"
+            type="date"
+            className="w-full rounded-xl px-4 py-3 bg-stone-50 border border-stone-200 text-slate-800"
+            aria-label="Expiry date (optional)"
+          />
           <div className="sm:col-span-2">
             <Button type="submit" disabled={busy}>{busy ? '...' : 'Create'}</Button>
           </div>
@@ -167,7 +174,7 @@ export default function AdminCouponsClient() {
                   disabled={busy}
                   className="text-red-500 hover:text-red-700 text-sm"
                 >
-                  حذف
+                  Delete
                 </button>
               </div>
             </div>
