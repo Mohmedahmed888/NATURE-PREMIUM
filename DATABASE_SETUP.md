@@ -6,8 +6,9 @@
 
 1. اذهب إلى [supabase.com](https://supabase.com) وأنشئ مشروعاً
 2. **Settings** → **Database** → انسخ **Connection string** (URI)
-3. تأكد أن المشروع **نشط** (ليس Paused) — المشاريع المجانية تتوقف بعد 7 أيام
-4. في Vercel: **Settings** → **Environment Variables** → أضف `DATABASE_URL`
+3. أضف `?connect_timeout=60` في نهاية الرابط (مثال: `...postgres?connect_timeout=60`)
+4. **مهم:** تأكد أن المشروع **نشط** — [Dashboard](https://supabase.com/dashboard) → إذا ظهر "Paused" اضغط **Restore** وانتظر دقيقتين
+5. في Vercel: **Settings** → **Environment Variables** → أضف `DATABASE_URL`
 
 ## الخيار ب: Neon
 
