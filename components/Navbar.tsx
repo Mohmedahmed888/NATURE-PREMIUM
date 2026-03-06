@@ -10,11 +10,11 @@ export function Navbar() {
   const { totalItems } = useCart()
   const [mobileOpen, setMobileOpen] = useState(false)
   const navItems = [
-    { href: '/', label: 'الرئيسية' },
-    { href: '/#about', label: 'من نحن' },
-    { href: '/#products', label: 'المنتجات' },
-    { href: '/#testimonials', label: 'آراء العملاء' },
-    { href: '/#blogs', label: 'المدونة' },
+    { href: '/', label: 'Home' },
+    { href: '/#about', label: 'About' },
+    { href: '/#products', label: 'Products' },
+    { href: '/#testimonials', label: 'Reviews' },
+    { href: '/#blogs', label: 'Blog' },
   ]
 
   return (
@@ -45,7 +45,7 @@ export function Navbar() {
             <Link
               href="/account"
               className="touch-target flex items-center justify-center p-2 -m-2 text-slate-600 hover:text-slate-900 active:text-slate-900 transition-colors rounded-lg"
-              aria-label="حسابي"
+              aria-label="My account"
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -71,7 +71,7 @@ export function Navbar() {
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden touch-target flex items-center justify-center p-2 -m-2 text-slate-600 hover:text-slate-900 active:text-slate-900 rounded-lg"
-            aria-label={mobileOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
           >
             {mobileOpen ? (

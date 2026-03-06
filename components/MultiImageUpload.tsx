@@ -19,7 +19,7 @@ function parseImages(val: string | string[] | null | undefined): string[] {
 export function MultiImageUpload({
   value,
   onChange,
-  placeholder = 'رفع صور أو لصق رابط',
+  placeholder = 'Upload images or paste URL',
 }: {
   value: string | string[]
   onChange: (urls: string[]) => void
@@ -54,20 +54,20 @@ export function MultiImageUpload({
       const data = await res.json()
       if (data.ok && data.url) {
         addImage(data.url)
-        toast('تم رفع الصورة بنجاح')
+        toast('Image uploaded')
       } else if (data.error === 'file_too_large') {
-        toast('الملف كبير جداً (الحد 5 ميجا)', 'error')
+        toast('File too large (max 5MB)', 'error')
       } else if (data.error === 'invalid_type') {
-        toast('نوع الملف غير مدعوم (jpeg, png, webp, gif)', 'error')
+        toast('Unsupported file type (jpeg, png, webp, gif)', 'error')
       } else if (data.error === 'blob_not_configured') {
-        toast('إعداد التخزين: من لوحة Vercel → Storage → أنشئ Blob واربطه بالمشروع', 'error')
+        toast('Configure storage: Vercel → Storage → Create Blob', 'error')
         setMode('url')
       } else {
-        toast('فشل رفع الصورة. استخدم وضع «رابط» كحل مؤقت', 'error')
+        toast('Upload failed. Use URL mode instead', 'error')
         setMode('url')
       }
     } catch {
-      toast('فشل رفع الصورة. استخدم وضع «رابط» وأدخل رابط الصورة من الإنترنت', 'error')
+      toast('Upload failed. Use URL mode and enter image link', 'error')
       setMode('url')
     } finally {
       setUploading(false)
@@ -83,14 +83,14 @@ export function MultiImageUpload({
           onClick={() => setMode('upload')}
           className={`text-sm px-3 py-2 rounded-lg ${mode === 'upload' ? 'bg-brand-100 text-brand-700' : 'bg-stone-100 text-slate-600'}`}
         >
-          رفع صورة
+          Upload
         </button>
         <button
           type="button"
           onClick={() => setMode('url')}
           className={`text-sm px-3 py-2 rounded-lg ${mode === 'url' ? 'bg-brand-100 text-brand-700' : 'bg-stone-100 text-slate-600'}`}
         >
-          رابط
+          URL
         </button>
       </div>
       {mode === 'upload' ? (
@@ -120,7 +120,7 @@ export function MultiImageUpload({
             disabled={!urlInput.trim()}
             className="px-4 py-2 rounded-xl bg-brand-600 text-white font-medium disabled:opacity-50"
           >
-            إضافة
+            Add
           </button>
         </div>
       )}

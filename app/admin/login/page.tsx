@@ -16,12 +16,12 @@ export default async function AdminLoginPage(props: { searchParams: Promise<{ er
         </div>
 
         <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-stone-100">
-          <h1 className="text-2xl font-extrabold text-slate-800">لوحة التحكم</h1>
-          <p className="text-slate-600 mt-2">تسجيل دخول المسؤول (Admin)</p>
+          <h1 className="text-2xl font-extrabold text-slate-800">Admin Dashboard</h1>
+          <p className="text-slate-600 mt-2">Admin login</p>
 
           <form action={adminLoginAction} className="mt-8 space-y-4">
             <div className="space-y-2">
-              <label className="text-sm text-slate-600">البريد الإلكتروني</label>
+              <label className="text-sm text-slate-600">Email</label>
               <input
                 name="email"
                 type="email"
@@ -32,25 +32,25 @@ export default async function AdminLoginPage(props: { searchParams: Promise<{ er
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm text-slate-600">كلمة المرور</label>
+              <label className="text-sm text-slate-600">Password</label>
               <input
                 name="password"
                 type="password"
-                placeholder="أدخل كلمة المرور"
+                placeholder="Enter password"
                 className="w-full rounded-2xl px-4 py-3 bg-stone-50 border border-stone-200 text-slate-800 outline-none focus:border-brand-400 focus:ring-2 focus:ring-brand-500/30"
                 required
               />
             </div>
 
-            {hasErr && <div className="text-red-500 text-sm">البريد أو كلمة المرور غير صحيحة</div>}
+            {hasErr && <div className="text-red-500 text-sm">Invalid email or password</div>}
 
             <button className="w-full rounded-2xl px-4 py-3 font-bold bg-brand-600 hover:bg-brand-500 active:bg-brand-700 text-white">
-              دخول
+              Login
             </button>
           </form>
 
           <p className="mt-6 text-center text-sm text-slate-500">
-            <Link href="/" className="hover:text-brand-600">← العودة للموقع</Link>
+            <Link href="/" className="hover:text-brand-600">← Back to website</Link>
           </p>
         </div>
       </div>

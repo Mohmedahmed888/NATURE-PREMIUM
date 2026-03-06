@@ -57,14 +57,14 @@ export default function AdminCouponsClient() {
       })
       const data = await res.json()
       if (!data.ok) {
-        if (data.error === 'code_exists') throw new Error('الكود موجود مسبقاً')
-        throw new Error(data.error || 'فشل')
+        if (data.error === 'code_exists') throw new Error('Code already exists')
+        throw new Error(data.error || 'Failed')
       }
-      setMsg('تم إنشاء الكود ✅')
+      setMsg('Coupon created ✓')
       form.reset()
       await refresh()
     } catch (e: any) {
-      setMsg(e?.message || 'حصل خطأ')
+      setMsg(e?.message || 'Error')
     } finally {
       setBusy(false)
     }
@@ -79,27 +79,27 @@ export default function AdminCouponsClient() {
         body: JSON.stringify({ active }),
       })
       const data = await res.json()
-      if (!data.ok) throw new Error('فشل')
-      setMsg(active ? 'تم تفعيل الكود ✅' : 'تم إيقاف الكود')
+      if (!data.ok) throw new Error('Failed')
+      setMsg(active ? 'Coupon enabled ✓' : 'Coupon disabled')
       await refresh()
     } catch (e: any) {
-      setMsg(e?.message || 'حصل خطأ')
+      setMsg(e?.message || 'Error')
     } finally {
       setBusy(false)
     }
   }
 
   async function deleteCoupon(id: string) {
-    if (!confirm('حذف هذا الكود؟')) return
+    if (!confirm('Delete this coupon?')) return
     setBusy(true)
     try {
       const res = await fetch(`/api/coupons/${id}`, { method: 'DELETE' })
       const data = await res.json()
-      if (!data.ok) throw new Error('فشل الحذف')
-      setMsg('تم الحذف ✅')
+      if (!data.ok) throw new Error('Delete failed')
+      setMsg('Deleted ✓')
       await refresh()
     } catch (e: any) {
-      setMsg(e?.message || 'حصل خطأ')
+      setMsg(e?.message || 'Error')
     } finally {
       setBusy(false)
     }
@@ -108,32 +108,32 @@ export default function AdminCouponsClient() {
   return (
     <div className="mt-8 space-y-8">
       <section>
-        <h2 className="font-bold text-slate-800 mb-4">إنشاء كود خصم</h2>
+        <h2 className="font-bold text-slate-800 mb-4">Create Coupon</h2>
         <form onSubmit={addCoupon} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Input name="code" placeholder="الكود (مثال: SUMMER20)" required />
+          <Input name="code" placeholder="Code (e.g. SUMMER20)" required />
           <div>
             <select
               name="type"
               className="w-full rounded-xl px-4 py-3 bg-stone-50 border border-stone-200"
               required
             >
-              <option value="PERCENT">نسبة %</option>
-              <option value="FIXED">مبلغ ثابت</option>
+              <option value="PERCENT">Percent %</option>
+              <option value="FIXED">Fixed amount</option>
             </select>
           </div>
-          <Input name="value" type="number" placeholder="القيمة (10 أو 50)" required />
-          <Input name="minOrder" type="number" step="0.01" placeholder="أقل طلب (جنيه)" defaultValue="0" />
-          <Input name="maxUses" type="number" placeholder="عدد الاستخدامات (فارغ=غير محدود)" />
-          <Input name="expiresAt" type="datetime-local" placeholder="تاريخ الانتهاء" />
+          <Input name="value" type="number" placeholder="Value (10 or 50)" required />
+          <Input name="minOrder" type="number" step="0.01" placeholder="Min order (EGP)" defaultValue="0" />
+          <Input name="maxUses" type="number" placeholder="Max uses (empty=unlimited)" />
+          <Input name="expiresAt" type="datetime-local" placeholder="Expiry date" />
           <div className="sm:col-span-2">
-            <Button type="submit" disabled={busy}>{busy ? '...' : 'إنشاء'}</Button>
+            <Button type="submit" disabled={busy}>{busy ? '...' : 'Create'}</Button>
           </div>
         </form>
         {msg && <p className="mt-2 text-sm text-slate-600">{msg}</p>}
       </section>
 
       <section>
-        <h2 className="font-bold text-slate-800 mb-4">الأكواد الحالية</h2>
+        <h2 className="font-bold text-slate-800 mb-4">Current Coupons</h2>
         <div className="space-y-2">
           {coupons.map((c) => (
             <div
@@ -144,12 +144,12 @@ export default function AdminCouponsClient() {
                 <span className="font-mono font-bold text-brand-600">{c.code}</span>
                 <span className="mr-2 text-slate-600">
                   — {c.type === 'PERCENT' ? `${c.value}%` : formatEGP(c.value)}
-                  {c.minOrderCents > 0 && ` (أقل طلب ${formatEGP(c.minOrderCents)})`}
+                  {c.minOrderCents > 0 && ` (min ${formatEGP(c.minOrderCents)})`}
                 </span>
                 <span className="text-xs text-slate-500">
-                  استخدام {c.usedCount}
+                  Used {c.usedCount}
                   {c.maxUses != null ? ` / ${c.maxUses}` : ''}
-                  {c.expiresAt && ` — ينتهي ${new Date(c.expiresAt).toLocaleDateString('ar-EG')}`}
+                  {c.expiresAt && ` — expires ${new Date(c.expiresAt).toLocaleDateString('en-GB')}`}
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -159,7 +159,7 @@ export default function AdminCouponsClient() {
                   disabled={busy}
                   className={`text-sm px-3 py-1 rounded-lg ${c.active ? 'bg-amber-100 text-amber-700 hover:bg-amber-200' : 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200'}`}
                 >
-                  {c.active ? 'إيقاف' : 'تفعيل'}
+                  {c.active ? 'Disable' : 'Enable'}
                 </button>
                 <button
                   type="button"
@@ -172,7 +172,7 @@ export default function AdminCouponsClient() {
               </div>
             </div>
           ))}
-          {coupons.length === 0 && <p className="text-slate-500">لا توجد أكواد</p>}
+          {coupons.length === 0 && <p className="text-slate-500">No coupons</p>}
         </div>
       </section>
     </div>

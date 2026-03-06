@@ -40,12 +40,12 @@ export default function CartPage() {
       <Navbar />
       <main id="main-content" className="w-full mx-auto max-w-5xl px-4 pb-16">
         <div className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 mt-6 shadow-lg border border-stone-100">
-          <h1 className="text-3xl font-extrabold text-slate-800">السلة</h1>
-          <p className="text-slate-600 mt-2">عدد المنتجات: {totalItems}</p>
+          <h1 className="text-3xl font-extrabold text-slate-800">Cart</h1>
+          <p className="text-slate-600 mt-2">Items: {totalItems}</p>
 
           {rows.length === 0 ? (
             <div className="mt-8 text-slate-600">
-              السلة فاضية. <Link className="underline" href="/">ارجع للمنتجات</Link>
+              Your cart is empty. <Link className="underline" href="/">Back to products</Link>
             </div>
           ) : (
             <div className="mt-8 space-y-4">
@@ -76,16 +76,16 @@ export default function CartPage() {
                       className="text-sm px-4 py-2.5 min-h-[44px] rounded-xl bg-red-50 hover:bg-red-100 active:bg-red-200 text-red-600 border border-red-100 transition-colors"
                       onClick={() => remove(id)}
                     >
-                      حذف
+                      Remove
                     </button>
                   </div>
                 </div>
               ))}
 
               <div className="flex items-center justify-between pt-4">
-                <div className="text-xl font-bold text-slate-800">الإجمالي: <span className="text-brand-600">{formatEGP(totalCents)}</span></div>
+                <div className="text-xl font-bold text-slate-800">Total: <span className="text-brand-600">{formatEGP(totalCents)}</span></div>
                 <Link href="/checkout">
-                  <Button>إكمال الطلب</Button>
+                  <Button>Proceed to Checkout</Button>
                 </Link>
               </div>
             </div>

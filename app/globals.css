@@ -88,7 +88,7 @@ body {
   margin: 0;
   clip: auto;
   overflow: visible;
-  inset-inline-end: 1rem;
+  left: 1rem;
   top: 1rem;
   outline: 2px solid white;
   outline-offset: 2px;

@@ -17,7 +17,7 @@ export function AccountAuth() {
               : 'text-slate-500 hover:text-slate-700'
           }`}
         >
-          تسجيل الدخول
+          Login
         </button>
         <button
           type="button"
@@ -28,14 +28,14 @@ export function AccountAuth() {
               : 'text-slate-500 hover:text-slate-700'
           }`}
         >
-          إنشاء حساب
+          Create Account
         </button>
       </div>
 
       {mode === 'login' ? (
         <form action="/api/account/login" method="post" className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">البريد الإلكتروني</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
             <input
               name="email"
               type="email"
@@ -56,13 +56,13 @@ export function AccountAuth() {
             type="submit"
             className="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold"
           >
-            تسجيل الدخول
+            Login
           </button>
         </form>
       ) : (
         <form action="/api/account/register" method="post" className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">الاسم</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Name</label>
             <input
               name="name"
               type="text"
@@ -72,7 +72,7 @@ export function AccountAuth() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">البريد الإلكتروني</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
             <input
               name="email"
               type="email"
@@ -95,7 +95,7 @@ export function AccountAuth() {
             type="submit"
             className="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold"
           >
-            إنشاء حساب
+            Create Account
           </button>
         </form>
       )}

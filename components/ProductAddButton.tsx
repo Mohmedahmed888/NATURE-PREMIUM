@@ -12,14 +12,14 @@ export function ProductAddButton({ productId, productName, stock = 999 }: { prod
   const handleAdd = () => {
     if (outOfStock) return
     add(productId)
-    toast(productName ? `تمت إضافة "${productName}" للسلة` : 'تمت الإضافة للسلة')
+    toast(productName ? `Added "${productName}" to cart` : 'Added to cart')
   }
 
   return (
     <div>
-      {!outOfStock && <p className="text-sm text-slate-500 mb-2">متوفر في المخزن: {stock}</p>}
+      {!outOfStock && <p className="text-sm text-slate-500 mb-2">In stock: {stock}</p>}
       <Button onClick={handleAdd} disabled={outOfStock} className="w-full">
-        {outOfStock ? 'نفد من المخزن' : 'اضف للسلة'}
+        {outOfStock ? 'Out of stock' : 'Add to Cart'}
       </Button>
     </div>
   )

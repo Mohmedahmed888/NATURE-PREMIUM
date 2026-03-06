@@ -88,7 +88,7 @@ export default async function ProductPage({ params }: Props) {
               </div>
 
               <div className="mt-6 text-xs text-slate-500">
-                الدفع كاش عند الاستلام — توصيل لجميع أنحاء مصر
+                Cash on delivery — shipping nationwide
               </div>
             </div>
           </div>

@@ -14,16 +14,16 @@ export function AdminNavbar() {
               href="/admin"
               className={`font-bold text-lg ${pathname === '/admin' ? 'text-white' : 'text-slate-300 hover:text-white'}`}
             >
-              المنتجات
+              Products
             </Link>
             <Link
               href="/admin/coupons"
               className={`text-sm ${pathname === '/admin/coupons' ? 'text-white' : 'text-slate-300 hover:text-white'}`}
             >
-              أكواد الخصم
+              Coupons
             </Link>
             <Link href="/" className="text-sm text-slate-300 hover:text-white">
-              الموقع
+              Website
             </Link>
           </div>
           <form action="/api/admin/logout" method="post">
@@ -31,7 +31,7 @@ export function AdminNavbar() {
               type="submit"
               className="text-sm text-slate-300 hover:text-white px-3 py-2 rounded-lg hover:bg-slate-800"
             >
-              خروج Admin
+              Logout
             </button>
           </form>
         </div>

@@ -13,23 +13,23 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.APP_URL || 'http://localhost:3000'),
   title: {
-    default: 'NATURE PREMIUM | منتجات طبيعية للعناية بالبشرة والشعر',
+    default: 'NATURE PREMIUM | Natural Skincare & Hair Care',
     template: '%s | NATURE PREMIUM',
   },
-  description: 'متجر NATURE PREMIUM — منتجات طبيعية راقية للعناية بالبشرة والشعر. جل ألوفيرا، زيوت طبيعية، صابون يدوي، وسيروم بشرة.',
-  keywords: ['منتجات طبيعية', 'ألوفيرا', 'زيت أرجان', 'صابون لافندر', 'عناية بالبشرة', 'NATURE PREMIUM'],
+  description: 'NATURE PREMIUM — Premium natural products for skin and hair care. Aloe gel, natural oils, handmade soap, serums.',
+  keywords: ['natural products', 'aloe vera', 'argan oil', 'lavender soap', 'skincare', 'NATURE PREMIUM'],
   authors: [{ name: 'NATURE PREMIUM' }],
   creator: 'NATURE PREMIUM',
   openGraph: {
     type: 'website',
-    locale: 'ar_EG',
+    locale: 'en_US',
     siteName: 'NATURE PREMIUM',
-    title: 'NATURE PREMIUM | منتجات طبيعية للعناية بالبشرة والشعر',
-    description: 'منتجات طبيعية راقية للعناية بالبشرة والشعر.',
+    title: 'NATURE PREMIUM | Natural Skincare & Hair Care',
+    description: 'Premium natural products for skin and hair care.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NATURE PREMIUM | منتجات طبيعية',
+    title: 'NATURE PREMIUM | Natural Products',
   },
   robots: {
     index: true,
@@ -54,13 +54,13 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" className={playfair.variable} suppressHydrationWarning>
+    <html lang="en" dir="ltr" className={playfair.variable} suppressHydrationWarning>
       <body className="min-h-screen antialiased w-full max-w-full overflow-x-clip">
         <a
           href="#main-content"
           className="skip-link"
         >
-          انتقل للمحتوى الرئيسي
+          Skip to main content
         </a>
         <Background />
         <div className="min-w-0 w-full max-w-full overflow-x-clip">

@@ -19,25 +19,25 @@ export default async function AccountPage(props: { searchParams: Promise<{ err?:
       <div className="min-h-screen w-full min-w-0 max-w-full overflow-x-clip grid grid-rows-[auto_1fr_auto]">
         <Navbar />
         <main id="main-content" className="w-full max-w-md mx-auto px-4 py-16">
-          <h1 className="text-2xl font-bold text-slate-800 mb-6">حسابي</h1>
+          <h1 className="text-2xl font-bold text-slate-800 mb-6">My Account</h1>
           {err === '1' && (
             <div className="mb-4 p-3 rounded-xl bg-red-50 text-red-600 text-sm">
-              البريد أو كلمة المرور غير صحيحة
+              Invalid email or password
             </div>
           )}
           {err === 'exists' && (
             <div className="mb-4 p-3 rounded-xl bg-amber-50 text-amber-700 text-sm">
-              البريد الإلكتروني مسجل مسبقاً. جرّب تسجيل الدخول.
+              Email already registered. Try logging in.
             </div>
           )}
           {err === 'password' && (
             <div className="mb-4 p-3 rounded-xl bg-amber-50 text-amber-700 text-sm">
-              كلمة المرور يجب أن تكون 6 أحرف على الأقل
+              Password must be at least 6 characters
             </div>
           )}
           {err === 'rate' && (
             <div className="mb-4 p-3 rounded-xl bg-amber-50 text-amber-700 text-sm">
-              محاولات كثيرة. انتظر دقيقة وحاول مرة أخرى.
+              Too many attempts. Wait a minute and try again.
             </div>
           )}
           <AccountAuth />
@@ -71,15 +71,15 @@ export default async function AccountPage(props: { searchParams: Promise<{ err?:
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg border border-stone-100 p-6 mb-8">
-          <h2 className="font-semibold text-slate-800 mb-2">معلومات الحساب</h2>
-          <p className="text-slate-600"><strong>الاسم:</strong> {user.name}</p>
-          <p className="text-slate-600 mt-1"><strong>البريد:</strong> {user.email}</p>
+          <h2 className="font-semibold text-slate-800 mb-2">Account Info</h2>
+          <p className="text-slate-600"><strong>Name:</strong> {user.name}</p>
+          <p className="text-slate-600 mt-1"><strong>Email:</strong> {user.email}</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg border border-stone-100 p-6">
-          <h2 className="font-semibold text-slate-800 mb-4">طلباتي</h2>
+          <h2 className="font-semibold text-slate-800 mb-4">My Orders</h2>
           {orders.length === 0 ? (
-            <p className="text-slate-500">لا توجد طلبات حتى الآن.</p>
+            <p className="text-slate-500">No orders yet.</p>
           ) : (
             <div className="space-y-4">
               {orders.map((o) => (
@@ -90,10 +90,10 @@ export default async function AccountPage(props: { searchParams: Promise<{ err?:
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="font-medium text-slate-800">
-                        طلب #{o.id.slice(-8).toUpperCase()}
+                        Order #{o.id.slice(-8).toUpperCase()}
                       </p>
                       <p className="text-sm text-slate-500">
-                        {new Date(o.createdAt).toLocaleDateString('ar-EG')}
+                        {new Date(o.createdAt).toLocaleDateString('en-GB')}
                       </p>
                     </div>
                     <span className="font-semibold text-brand-600">
@@ -110,16 +110,17 @@ export default async function AccountPage(props: { searchParams: Promise<{ err?:
                   </div>
                   <span
                     className={`inline-block mt-2 text-xs px-2 py-1 rounded ${
-                      o.status === 'PAID'
+                      o.status === 'DELIVERED' || o.status === 'PAID'
                         ? 'bg-emerald-100 text-emerald-700'
                         : o.status === 'SHIPPED'
                         ? 'bg-blue-100 text-blue-700'
                         : 'bg-amber-100 text-amber-700'
                     }`}
                   >
-                    {o.status === 'PENDING' && 'قيد الانتظار'}
-                    {o.status === 'PAID' && 'تم الدفع'}
-                    {o.status === 'SHIPPED' && 'تم الشحن'}
+                    {o.status === 'PENDING' && 'Pending'}
+                    {o.status === 'DELIVERED' && 'Delivered'}
+                    {o.status === 'PAID' && 'Paid'}
+                    {o.status === 'SHIPPED' && 'Shipped'}
                   </span>
                 </div>
               ))}
