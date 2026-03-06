@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import AdminCouponsClient from './AdminCouponsClient'
 
 export default async function AdminCouponsPage() {
-  if (!(await isAuthed())) redirect('/admin/login')
+  if (!(await isAuthed())) redirect('/account')
 
   return (
     <div>

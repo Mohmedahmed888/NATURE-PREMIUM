@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import AdminClient from './ui'
 
 export default async function AdminPage() {
-  if (!(await isAuthed())) redirect('/admin/login')
+  if (!(await isAuthed())) redirect('/account')
   return (
     <div>
       <AdminNavbar />
