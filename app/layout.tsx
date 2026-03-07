@@ -3,8 +3,6 @@ import type { Metadata, Viewport } from 'next'
 import { Playfair_Display } from 'next/font/google'
 import { Providers } from './providers'
 import { Background } from '@/components/Background'
-import { getSiteTheme } from '@/lib/site-theme'
-
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-brand',
@@ -53,10 +51,9 @@ export const viewport: Viewport = {
   themeColor: '#7c3aed',
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const theme = await getSiteTheme()
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" dir="ltr" className={`${playfair.variable} ${theme === 'dark' ? 'dark' : ''}`} suppressHydrationWarning>
+    <html lang="en" dir="ltr" className={playfair.variable} suppressHydrationWarning>
       <body className="min-h-screen antialiased w-full max-w-full overflow-x-clip">
         <a
           href="#main-content"

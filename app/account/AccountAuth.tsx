@@ -6,7 +6,7 @@ export function AccountAuth() {
   const [mode, setMode] = useState<'login' | 'register'>('login')
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-stone-100 dark:border-slate-700 p-8">
+    <div className="bg-white rounded-2xl shadow-xl border border-stone-100 p-8">
       <div className="flex gap-4 mb-6 border-b border-stone-200">
         <button
           type="button"

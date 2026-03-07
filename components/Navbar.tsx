@@ -17,10 +17,10 @@ export function Navbar() {
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-stone-50/95 dark:bg-slate-900/95 border-b border-stone-200/60 dark:border-slate-700/60 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full bg-stone-50/95 border-b border-stone-200/60 backdrop-blur-md">
       <div className="w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" style={{ marginInline: 'auto' }}>
         <div className="flex items-center justify-between h-14 sm:h-16 md:h-20 gap-2">
-          <Link href="/" className="font-brand font-normal text-xl text-slate-800 dark:text-slate-100 tracking-tight shrink-0">
+          <Link href="/" className="font-brand font-normal text-xl text-slate-800 tracking-tight shrink-0">
             Nature&apos;s Premium
           </Link>
 
@@ -32,7 +32,7 @@ export function Navbar() {
                 className={`text-sm font-medium transition-colors ${
                   pathname === item.href || (pathname === '/' && item.href === '/')
                     ? 'text-orange-500 border-b-2 border-orange-500 pb-0.5'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 {item.label}
@@ -43,7 +43,7 @@ export function Navbar() {
           <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             <Link
               href="/account"
-              className="touch-target flex items-center justify-center p-2 -m-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 active:text-slate-900 dark:active:text-slate-100 transition-colors rounded-lg"
+              className="touch-target flex items-center justify-center p-2 -m-2 text-slate-600 hover:text-slate-900 active:text-slate-900 transition-colors rounded-lg"
               aria-label="My account"
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,7 +52,7 @@ export function Navbar() {
             </Link>
             <Link
               href="/cart"
-              className="relative touch-target flex items-center justify-center p-2 -m-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 active:text-slate-900 dark:active:text-slate-100 transition-colors rounded-lg"
+              className="relative touch-target flex items-center justify-center p-2 -m-2 text-slate-600 hover:text-slate-900 active:text-slate-900 transition-colors rounded-lg"
               aria-label={totalItems > 0 ? `Cart — ${totalItems} items` : 'Cart'}
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,7 +69,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden touch-target flex items-center justify-center p-2 -m-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 active:text-slate-900 dark:active:text-slate-100 rounded-lg"
+            className="md:hidden touch-target flex items-center justify-center p-2 -m-2 text-slate-600 hover:text-slate-900 active:text-slate-900 rounded-lg"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
           >
@@ -86,14 +86,14 @@ export function Navbar() {
         </div>
 
         {mobileOpen && (
-          <nav className="md:hidden py-4 border-t border-stone-200 dark:border-slate-700 flex flex-col gap-2" role="navigation">
+          <nav className="md:hidden py-4 border-t border-stone-200 flex flex-col gap-2" role="navigation">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
                 className={`py-2 px-3 rounded-lg text-sm font-medium ${
-                  pathname === item.href ? 'bg-orange-50 dark:bg-orange-900/30 text-orange-600' : 'text-slate-600 dark:text-slate-400 hover:bg-stone-100 dark:hover:bg-slate-800'
+                  pathname === item.href ? 'bg-orange-50 text-orange-600' : 'text-slate-600 hover:bg-stone-100'
                 }`}
               >
                 {item.label}

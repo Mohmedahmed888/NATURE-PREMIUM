@@ -2,8 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { AdminDarkModeToggle } from './AdminDarkModeToggle'
-
 export function AdminNavbar() {
   const pathname = usePathname()
   return (
@@ -26,7 +24,6 @@ export function AdminNavbar() {
             <Link href="/" className="text-sm text-slate-300 hover:text-white">
               Website
             </Link>
-            <AdminDarkModeToggle />
           </div>
           <form action="/api/admin/logout" method="post">
             <button

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  @apply bg-stone-50/90 text-slate-800 dark:bg-slate-900 dark:text-slate-100;
+  @apply bg-stone-50/90 text-slate-800;
   overflow-x: clip;
   width: 100%;
   max-width: 100%;
