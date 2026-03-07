@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
-  description: 'Terms and conditions of use - NATURE PREMIUM',
+  description: "Terms and conditions of use - Nature's Premium",
 }
 
 export default function TermsPage() {
@@ -14,7 +14,7 @@ export default function TermsPage() {
       <main id="main-content" className="w-full max-w-3xl mx-auto px-4 py-16">
         <h1 className="text-3xl font-bold text-slate-800">Terms & Conditions</h1>
         <p className="mt-4 text-slate-600">
-          By using <span className="font-brand text-slate-800">NATURE PREMIUM</span>, you agree to these terms. Products are subject to
+          By using <span className="font-brand text-slate-800">Nature&apos;s Premium</span>, you agree to these terms. Products are subject to
           availability. We commit to delivering your orders on time and reserve the right to cancel orders in
           exceptional cases.
         </p>

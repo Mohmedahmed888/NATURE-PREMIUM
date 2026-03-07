@@ -8,8 +8,8 @@ export function Footer() {
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" style={{ marginInline: 'auto' }}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
-            <Link href="/" className="font-brand font-normal text-xl text-white uppercase">
-              NATURE PREMIUM
+            <Link href="/" className="font-brand font-normal text-xl text-white">
+              Nature&apos;s Premium
             </Link>
             <p className="mt-4 text-slate-400 text-sm leading-relaxed max-w-xs">
               Premium natural products for skin and hair care. Quality at fair prices.
@@ -55,7 +55,7 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-slate-500">
-            © {currentYear} NATURE PREMIUM. All rights reserved.
+            © {currentYear} Nature&apos;s Premium. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-4 sm:gap-6 text-sm">
             <Link href="/account" className="py-2 -my-2 text-slate-500 hover:text-slate-400 transition-colors min-h-[44px] flex items-center">My Account</Link>

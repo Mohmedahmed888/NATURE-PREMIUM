@@ -21,8 +21,8 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full bg-stone-50/95 border-b border-stone-200/60 backdrop-blur-md">
       <div className="w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" style={{ marginInline: 'auto' }}>
         <div className="flex items-center justify-between h-14 sm:h-16 md:h-20 gap-2">
-          <Link href="/" className="font-brand font-normal text-xl text-slate-800 tracking-tight shrink-0 uppercase">
-            NATURE PREMIUM
+          <Link href="/" className="font-brand font-normal text-xl text-slate-800 tracking-tight shrink-0">
+            Nature&apos;s Premium
           </Link>
 
           <nav className="hidden md:flex items-center gap-4 lg:gap-8">

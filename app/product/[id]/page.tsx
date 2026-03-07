@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: product.name,
     description: product.description,
     openGraph: {
-      title: `${product.name} | NATURE PREMIUM`,
+      title: `${product.name} | Nature's Premium`,
       description: product.description,
       images: [product.imageUrl],
     },
@@ -74,7 +74,7 @@ export default async function ProductPage({ params }: Props) {
               <ProductImageGallery imageUrl={product.imageUrl} imageUrls={product.imageUrls} alt={product.name} />
             </div>
             <div className="p-4 sm:p-6 md:p-8">
-              <div className="font-brand text-sm text-orange-500 font-semibold brand-text uppercase">NATURE PREMIUM</div>
+              <div className="font-brand text-sm text-orange-500 font-semibold brand-text">Nature&apos;s Premium</div>
               <h1 className="text-3xl font-extrabold mt-2 text-slate-800">{product.name}</h1>
               <div className="mt-3 text-brand-600 font-semibold">{formatEGP(product.priceCents)}</div>
               <p className="mt-5 text-slate-600 leading-relaxed">{product.description}</p>

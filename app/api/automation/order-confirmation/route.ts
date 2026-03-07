@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     .join('\n')
 
   const text = [
-    `شكراً يا ${order.name} — تم استلام طلبك من NATURE PREMIUM ✅`,
+    `شكراً يا ${order.name} — تم استلام طلبك من Nature's Premium ✅`,
     '',
     'تفاصيل الطلب:',
     lines,
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 
   await sendEmail({
     to: order.email,
-    subject: 'NATURE PREMIUM — Order Confirmation',
+    subject: "Nature's Premium — Order Confirmation",
     text,
   })
 

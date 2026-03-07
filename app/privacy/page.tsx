@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy policy and data protection - NATURE PREMIUM',
+  description: "Privacy policy and data protection - Nature's Premium",
 }
 
 export default function PrivacyPage() {
@@ -14,7 +14,7 @@ export default function PrivacyPage() {
       <main id="main-content" className="w-full max-w-3xl mx-auto px-4 py-16">
         <h1 className="text-3xl font-bold text-slate-800">Privacy Policy</h1>
         <p className="mt-4 text-slate-600">
-          At <span className="font-brand text-slate-800">NATURE PREMIUM</span> we respect your privacy. Data you provide when placing an order
+          At <span className="font-brand text-slate-800">Nature&apos;s Premium</span> we respect your privacy. Data you provide when placing an order
           (name, email, address) is collected only for order processing and communication.
           We do not share your data with third parties for marketing.
         </p>

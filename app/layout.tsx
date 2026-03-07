@@ -13,23 +13,23 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.APP_URL || 'http://localhost:3000'),
   title: {
-    default: 'NATURE PREMIUM | Natural Skincare & Hair Care',
-    template: '%s | NATURE PREMIUM',
+    default: "Nature's Premium | Natural Skincare & Hair Care",
+    template: "%s | Nature's Premium",
   },
-  description: 'NATURE PREMIUM — Premium natural products for skin and hair care. Aloe gel, natural oils, handmade soap, serums.',
-  keywords: ['natural products', 'aloe vera', 'argan oil', 'lavender soap', 'skincare', 'NATURE PREMIUM'],
-  authors: [{ name: 'NATURE PREMIUM' }],
-  creator: 'NATURE PREMIUM',
+  description: "Nature's Premium — Premium natural products for skin and hair care. Aloe gel, natural oils, handmade soap, serums.",
+  keywords: ['natural products', 'aloe vera', 'argan oil', 'lavender soap', 'skincare', "Nature's Premium"],
+  authors: [{ name: "Nature's Premium" }],
+  creator: "Nature's Premium",
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'NATURE PREMIUM',
-    title: 'NATURE PREMIUM | Natural Skincare & Hair Care',
+    siteName: "Nature's Premium",
+    title: "Nature's Premium | Natural Skincare & Hair Care",
     description: 'Premium natural products for skin and hair care.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NATURE PREMIUM | Natural Products',
+    title: "Nature's Premium | Natural Products",
   },
   robots: {
     index: true,
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    title: 'NATURE PREMIUM',
+    title: "Nature's Premium",
   },
   icons: {
     icon: '/favicon.svg',

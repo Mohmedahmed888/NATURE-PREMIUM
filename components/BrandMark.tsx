@@ -5,8 +5,8 @@ export function BrandMark() {
         <div className="h-4 w-4 rounded-full bg-brand-500" />
       </div>
       <div className="leading-tight font-brand font-normal">
-        <div className="text-sm text-orange-500 font-semibold brand-text uppercase">NATURE</div>
-        <div className="text-xl tracking-wide text-slate-800 uppercase">NATURE PREMIUM</div>
+        <div className="text-sm text-orange-500 font-semibold brand-text">Nature&apos;s</div>
+        <div className="text-xl tracking-wide text-slate-800">Premium</div>
       </div>
     </div>
   )

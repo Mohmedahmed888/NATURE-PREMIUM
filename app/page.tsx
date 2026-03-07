@@ -22,7 +22,7 @@ export default async function Page() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'NATURE PREMIUM',
+    name: "Nature's Premium",
     url: base,
     description: 'Premium natural products for skin and hair care',
   }
@@ -150,7 +150,7 @@ export default async function Page() {
                   About Us
                 </h2>
                 <p className="mt-6 text-slate-600 text-lg leading-relaxed font-brand">
-                  <span className="text-slate-800">NATURE PREMIUM</span> has been specializing in natural skincare and hair care for years.
+                  <span className="text-slate-800">Nature&apos;s Premium</span> has been specializing in natural skincare and hair care for years.
                   We believe quality is non-negotiable, and every product we offer is carefully selected to be the best
                   for you and your family.
                 </p>
