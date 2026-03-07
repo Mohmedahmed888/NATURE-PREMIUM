@@ -84,7 +84,7 @@ export function ImageUploadInput({
             disabled={uploading}
             className="w-full rounded-xl px-4 py-3 bg-stone-50 border border-stone-200 border-dashed text-slate-600 hover:bg-stone-100 disabled:opacity-50"
           >
-            {uploading ? 'جاري الرفع...' : 'اختر صورة أو اسحبها هنا'}
+            {uploading ? 'Uploading...' : 'Choose an image or drag it here'}
           </button>
           {value && (
             <div className="mt-2 flex items-center gap-2">

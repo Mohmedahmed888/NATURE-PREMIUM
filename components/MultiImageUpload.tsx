@@ -102,7 +102,7 @@ export function MultiImageUpload({
             disabled={uploading}
             className="w-full rounded-xl px-4 py-3 bg-stone-50 border border-stone-200 border-dashed text-slate-600 hover:bg-stone-100 disabled:opacity-50"
           >
-            {uploading ? 'جاري الرفع...' : 'إضافة صورة'}
+            {uploading ? 'Uploading...' : 'Add image'}
           </button>
         </div>
       ) : (

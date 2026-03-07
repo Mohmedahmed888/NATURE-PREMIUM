@@ -59,13 +59,13 @@ export default async function AccountPage(props: { searchParams: Promise<{ err?:
       <Navbar />
       <main id="main-content" className="w-full max-w-4xl mx-auto px-4 py-16">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-slate-800">حسابي</h1>
+          <h1 className="text-2xl font-bold text-slate-800">My Account</h1>
           <form action="/api/account/logout" method="post">
             <button
               type="submit"
               className="text-sm text-slate-500 hover:text-red-600 transition-colors"
             >
-              تسجيل الخروج
+              Log out
             </button>
           </form>
         </div>

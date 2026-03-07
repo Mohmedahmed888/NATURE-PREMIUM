@@ -44,7 +44,7 @@ export function AccountAuth() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">كلمة المرور</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
             <input
               name="password"
               type="password"
@@ -81,7 +81,7 @@ export function AccountAuth() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">كلمة المرور</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
             <input
               name="password"
               type="password"
@@ -89,7 +89,7 @@ export function AccountAuth() {
               minLength={6}
               className="w-full rounded-xl px-4 py-3 bg-stone-50 border border-stone-200"
             />
-            <p className="text-xs text-slate-500 mt-1">6 أحرف على الأقل</p>
+            <p className="text-xs text-slate-500 mt-1">At least 6 characters</p>
           </div>
           <button
             type="submit"
