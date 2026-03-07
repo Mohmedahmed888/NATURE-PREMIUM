@@ -61,7 +61,6 @@ export function Footer() {
             <Link href="/account" className="py-2 -my-2 text-slate-500 hover:text-slate-400 transition-colors min-h-[44px] flex items-center">My Account</Link>
             <Link href="/privacy" className="py-2 -my-2 text-slate-500 hover:text-slate-400 transition-colors min-h-[44px] flex items-center">Privacy Policy</Link>
             <Link href="/terms" className="py-2 -my-2 text-slate-500 hover:text-slate-400 transition-colors min-h-[44px] flex items-center">Terms</Link>
-            <Link href="/account" className="py-2 -my-2 text-slate-600 hover:text-slate-400 transition-colors min-h-[44px] flex items-center">Admin</Link>
           </div>
         </div>
       </div>
