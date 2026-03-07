@@ -29,25 +29,25 @@ export function ProductCard({ p }: { p: ProductDTO }) {
     toast(`Added "${p.name}" to cart`)
   }
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-100 hover:shadow-xl transition-shadow">
-      <div className="aspect-[4/3] bg-stone-50 relative overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg border border-stone-100 dark:border-slate-700 hover:shadow-xl transition-shadow">
+      <div className="aspect-[4/3] bg-stone-50 dark:bg-slate-700/50 relative overflow-hidden">
         <OptimizedImage src={p.imageUrl} alt={p.name} fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" />
       </div>
       <div className="p-6">
         <div className="flex flex-col gap-2">
           <Link
             href={`/product/${p.slug}`}
-            className="text-lg font-bold text-slate-800 hover:text-brand-600 transition-colors"
+            className="text-lg font-bold text-slate-800 dark:text-slate-100 hover:text-brand-500 transition-colors"
           >
             {p.name}
           </Link>
-          <p className="text-sm text-slate-500 line-clamp-2">{p.description}</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">{p.description}</p>
           <div className="flex items-center justify-between gap-2">
             <span className="text-lg font-semibold text-brand-600">{formatEGP(p.priceCents)}</span>
             {outOfStock ? (
               <span className="text-sm text-amber-600 font-medium">Out of stock</span>
             ) : (
-              <span className="text-xs text-slate-500">In stock: {stock}</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400">In stock: {stock}</span>
             )}
           </div>
         </div>
@@ -61,7 +61,7 @@ export function ProductCard({ p }: { p: ProductDTO }) {
           </Button>
           <Link
             href={`/product/${p.slug}`}
-            className="flex-1 inline-flex items-center justify-center rounded-xl px-4 py-2.5 min-h-[44px] font-semibold transition bg-stone-200 hover:bg-stone-300 active:bg-stone-400 text-slate-800 border border-stone-300"
+            className="flex-1 inline-flex items-center justify-center rounded-xl px-4 py-2.5 min-h-[44px] font-semibold transition bg-stone-200 dark:bg-slate-600 hover:bg-stone-300 dark:hover:bg-slate-500 active:bg-stone-400 text-slate-800 dark:text-slate-100 border border-stone-300 dark:border-slate-600"
           >
             View
           </Link>

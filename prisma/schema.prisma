@@ -77,6 +77,12 @@ model Coupon {
   @@index([code])
 }
 
+model SiteSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+}
+
 model OrderItem {
   id        String  @id @default(cuid())
   orderId   String
