@@ -11,7 +11,6 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const navItems = [
     { href: '/', label: 'Home' },
-    { href: '/#about', label: 'About' },
     { href: '/#products', label: 'Products' },
     { href: '/#testimonials', label: 'Reviews' },
     { href: '/#blogs', label: 'Blog' },
